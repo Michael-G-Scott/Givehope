@@ -5,16 +5,16 @@ const path = require('path');
 
 const app = express();
 const port = 3000;
-console.log(__dirname);
+
 app.use(bodyParser.json());
 
-app.use(express.static(path.join('./', 'public')));
-
-
+app.use(express.static(path.join(__dirname, 'public')));
+//console.log(process.env);
+console.log("before get");
 app.get('/', (req, res) => {
-  res.sendFile(path.join('./', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
+console.log("after get");
 app.post('/payment-success', (req, res) => {
   const paymentDetails = req.body;
 
@@ -64,5 +64,5 @@ app.post('/payment-success', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+  console.log(`Server running at https://givehope-vpxp.onrender.com:${port}/`);
 });
